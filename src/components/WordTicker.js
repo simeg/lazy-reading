@@ -3,13 +3,13 @@ import { createElement as f, Component } from 'react'
 // I'm forced to use a Class here to use `componentDidMount()`
 // which I need for dealing with `setInterval()`
 export default class WordTicker extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = { counter: 0 }
   }
 
-  componentDidMount() {
-    const wordList = this.props.input.split(" ")
+  componentDidMount () {
+    const wordList = this.props.input.split(' ')
 
     this.interval = setInterval(() => {
       const counter = this.state.counter
@@ -17,17 +17,17 @@ export default class WordTicker extends Component {
         this.componentWillUnmount()
         this.props.dispatch(this.props.setWordTickerRunning(false))
       } else {
-        this.setState({ word: wordList[counter], counter: counter + 1})
+        this.setState({ word: wordList[counter], counter: counter + 1 })
       }
     }, this.props.timeoutMs)
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     clearInterval(this.interval)
   }
 
-  render() {
-    return(
+  render () {
+    return (
       f('div', { id: 'letter-ticker' }, this.state.word)
     )
   }

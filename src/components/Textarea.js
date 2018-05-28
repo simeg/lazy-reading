@@ -8,7 +8,7 @@ export default ({ onChange, value }) => {
         onChange,
         placeholder: 'Enter a text you want to lazy read..',
         required: true,
-        value,
+        value
       }
     )
   )

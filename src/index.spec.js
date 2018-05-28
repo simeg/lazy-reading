@@ -1,5 +1,7 @@
-import { inputOnChange, setWordTickerRunning } from "./actions";
-import { initialState, reducer } from "./reducer";
+/* global describe, it, expect */
+
+import { inputOnChange, setWordTickerRunning } from './actions'
+import { initialState, reducer } from './reducer'
 
 describe('actions', () => {
   it('inputOnChange should create INPUT_ON_CHANGE action', () => {
@@ -26,7 +28,7 @@ describe('reducer', () => {
 
   it('builds correct state for INPUT_ON_CHANGE', () => {
     expect(
-      reducer({}, { type: "INPUT_ON_CHANGE", input: 'specific-input' })
+      reducer({}, { type: 'INPUT_ON_CHANGE', input: 'specific-input' })
     ).toEqual({ userInput: 'specific-input' })
   })
 
@@ -34,11 +36,11 @@ describe('reducer', () => {
     expect(
       reducer(
         { userInput: 'arbitrary-value' },
-        { type: "WORD_TICKER_RUNNING", isRunning: 'specific-input' }
+        { type: 'WORD_TICKER_RUNNING', isRunning: 'specific-input' }
       )
     ).toEqual({
       isTickerRunning: 'specific-input',
-      userInput: 'arbitrary-value',
+      userInput: 'arbitrary-value'
     })
   })
 
@@ -46,7 +48,7 @@ describe('reducer', () => {
     expect(
       reducer(
         { userInput: undefined, isTickerRunning: false },
-        { type: "WORD_TICKER_RUNNING", isRunning: true }
+        { type: 'WORD_TICKER_RUNNING', isRunning: true }
       )
     ).toEqual({ isTickerRunning: false })
   })

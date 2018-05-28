@@ -5,11 +5,11 @@
 build:
 	./node_modules/.bin/react-scripts build
 
-deploy: test build login
-	heroku container:push web
+deploy: lint test build
+	git push heroku master
 
-login:
-	heroku container:login
+lint:
+	./node_modules/.bin/standard --fix "src/**/*.js"
 
 serve:
 	./node_modules/.bin/react-scripts start
