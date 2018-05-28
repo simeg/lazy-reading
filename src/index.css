@@ -83,3 +83,30 @@ body {
   text-transform: uppercase;
   width: 188px;
 }
+
+#word-container {
+  width: 210px;
+  margin: 0 auto 0 auto;
+  text-align: center;
+}
+
+#word-container #pre,
+#word-container #post {
+  display: inline-block;
+  max-width: 90px;
+  width: 100%;
+}
+
+#word-container #pre {
+  text-align: right;
+}
+
+#word-container #highlight {
+  display: inline-block;
+  position: static;
+  color: #FF3366;
+}
+
+#word-container #post {
+  text-align: left;
+}
