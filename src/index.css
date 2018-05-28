@@ -7,7 +7,7 @@
 body {
   background-color: #32292F;
   color: #FAFAFF;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Overpass Mono', monospace;
 }
 
 #word-counter {
