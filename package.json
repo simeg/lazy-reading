@@ -2,6 +2,7 @@
   "name": "lazy-reading",
   "version": "1.0.0",
   "description": "Read without moving your eyes",
+  "homepage": "https://lazy-reading.herokuapp.com/",
   "author": "Simon Egersand <s.egersand@gmail.com>",
   "repository": "git@github.com:simeg/lazy-reading.git",
   "license": "MIT",
