@@ -7,6 +7,9 @@ deploy: lint test build
 	git push heroku master
 
 lint:
+	./node_modules/.bin/prettier "src/**/*.js"
+
+fmt:
 	./node_modules/.bin/prettier "src/**/*.js" --write
 
 serve:
