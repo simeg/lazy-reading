@@ -8,6 +8,10 @@ export default class WordTicker extends Component {
     this.state = { counter: 0 }
   }
 
+  calculateTimeout (wpm) {
+    return (600 / (wpm / 100))
+  }
+
   componentDidMount () {
     const wordList = this.props.input.split(' ')
 
@@ -19,7 +23,7 @@ export default class WordTicker extends Component {
       } else {
         this.setState({ word: wordList[counter], counter: counter + 1 })
       }
-    }, this.props.timeoutMs)
+    }, this.calculateTimeout(this.props.wpm))
   }
 
   componentWillUnmount () {

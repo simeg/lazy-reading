@@ -1,7 +1,8 @@
 import { createElement as f } from 'react'
 import { connect } from 'react-redux'
 import Textarea from '../components/Textarea'
-import { inputOnChange, setWordTickerRunning } from '../actions'
+import {inputOnChange, setWordTickerRunning, wpmOnChange} from '../actions'
+import WpmDropdown from '../components/WpmDropdown'
 
 const mapStateToProps = state => ({
   userInput: state.reducer.userInput,
@@ -19,9 +20,12 @@ const handleSubmit = ({ event, dispatch }) => {
 const handleChange = ({ event, dispatch }) =>
   dispatch(inputOnChange(event.target.value))
 
+const handleWpmChange = ({ event, dispatch }) =>
+  dispatch(wpmOnChange(event.target.value))
+
 const clearTextarea = ({ dispatch }) => dispatch(inputOnChange(''))
 
-const Input = ({ dispatch, autoFocus, placeholder, required, userInput }) => {
+const Input = ({ dispatch, autoFocus, placeholder, required, userInput, wpm }) => {
   return (
     f('div', { id: 'inner' },
       f('form', {
@@ -45,7 +49,8 @@ const Input = ({ dispatch, autoFocus, placeholder, required, userInput }) => {
         type: 'button',
         onClick: () => clearTextarea({ dispatch })
       }, 'Clear')
-      )
+      ),
+      f(WpmDropdown, { wpm, onChange: event => handleWpmChange({ event, dispatch }) }, null)
     )
   )
 }
