@@ -25,7 +25,7 @@ const handleWpmChange = ({event, dispatch}) =>
 
 const clearTextarea = ({dispatch}) => dispatch(inputOnChange(''))
 
-const Input = ({dispatch, autoFocus, placeholder, required, userInput, wpm}) => {
+const InputSection = ({dispatch, autoFocus, placeholder, required, userInput, wpm}) => {
   return (
     f('div', {id: 'inner'},
       f('form', {
@@ -55,4 +55,6 @@ const Input = ({dispatch, autoFocus, placeholder, required, userInput, wpm}) => 
   )
 }
 
-export default connect(mapStateToProps)(Input)
+export default connect(
+  mapStateToProps
+)(InputSection)

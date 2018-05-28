@@ -5,18 +5,17 @@ import { setWordTickerRunning } from '../actions'
 
 const mapStateToProps = state => ({
   input: state.reducer.userInput,
-  timeoutMs: state.reducer.timeoutMs,
   isRunning: state.reducer.isTickerRunning,
   wpm: state.reducer.wpm
 })
 
-const Output = ({ dispatch, input, timeoutMs = false, isRunning, wpm }) => {
+const OutputSection = ({ dispatch, input, isRunning, wpm }) => {
   if (!isRunning) return null
   return f('div', { id: 'output' },
-    f(WordTicker, { dispatch, input, timeoutMs, wpm, setWordTickerRunning })
+    f(WordTicker, { dispatch, input, wpm, setWordTickerRunning })
   )
 }
 
 export default connect(
   mapStateToProps
-)(Output)
+)(OutputSection)

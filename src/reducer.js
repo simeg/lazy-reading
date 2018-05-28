@@ -1,7 +1,6 @@
 import {combineReducers} from 'redux'
 
 export const initialState = {
-  timeoutMs: 250,
   wpm: 100,
 
   // TEMPORARY
