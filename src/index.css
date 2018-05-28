@@ -10,6 +10,11 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+#word-counter {
+  text-align: right;
+  margin-bottom: 5px;
+}
+
 #outer {
   margin: 100px auto 0 auto;
   max-width: 600px;

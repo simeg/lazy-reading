@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Textarea from '../components/Textarea'
 import {inputOnChange, setWordTickerRunning, wpmOnChange} from '../actions'
 import WpmDropdown from '../components/WpmDropdown'
+import WordCounter from '../components/WordCounter'
 
 const mapStateToProps = state => ({
   userInput: state.reducer.userInput,
@@ -28,6 +29,7 @@ const clearTextarea = ({dispatch}) => dispatch(inputOnChange(''))
 const InputSection = ({dispatch, autoFocus, placeholder, required, userInput, wpm}) => {
   return (
     f('div', {id: 'inner'},
+      f(WordCounter, { userInput }, null),
       f('form', {
         onSubmit: event => handleSubmit({event, dispatch})
       },
