@@ -28,7 +28,6 @@ const wpmToSpeedString = wpm => {
 };
 
 export default ({ onChange, wpm }) => {
-  console.log(wpm);
   return f(
     Fragment,
     null,
