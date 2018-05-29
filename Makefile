@@ -1,19 +1,27 @@
-.PHONY: build deploy lint serve test
+.PHONY: build deploy fmt lint serve test-ci test
+
+BINS=./node_modules/.bin
+
+REACT_SCRIPTS=$(BINS)/react-scripts
+PRETTIER=$(BINS)/prettier
 
 build:
-	./node_modules/.bin/react-scripts build
+	$(REACT_SCRIPTS) build
 
-deploy: lint test build
+deploy: lint test-ci build
 	git push heroku master
 
-lint:
-	./node_modules/.bin/prettier "src/**/*.js"
-
 fmt:
-	./node_modules/.bin/prettier "src/**/*.js" --write
+	$(PRETTIER) "src/**/*.js" --write
+
+lint:
+	$(PRETTIER) "src/**/*.js"
 
 serve:
-	./node_modules/.bin/react-scripts start
+	$(REACT_SCRIPTS) start
+
+test-ci:
+	CI=true $(REACT_SCRIPTS) test
 
 test:
-	./node_modules/.bin/react-scripts test
+	$(REACT_SCRIPTS) test
