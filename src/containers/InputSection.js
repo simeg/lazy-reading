@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import Slider from "../components/Slider";
 import Textarea from "../components/Textarea";
 import WordCounter from "../components/WordCounter";
-import WpmDropdown from "../components/WpmDropdown";
 import { inputOnChange, setWordTickerRunning, wpmOnChange } from "../actions";
 
 const mapStateToProps = state => ({
@@ -18,9 +17,6 @@ const handleSubmit = ({ event, dispatch }) => {
 
 const handleChange = ({ event, dispatch }) =>
   dispatch(inputOnChange(event.target.value));
-
-const handleWpmChange = ({ event, dispatch }) =>
-  dispatch(wpmOnChange(event.target.value));
 
 const handleStop = ({ dispatch }) => dispatch(setWordTickerRunning(false));
 
@@ -78,11 +74,6 @@ const InputSection = ({
           onClick: () => handleStop({ dispatch })
         },
         "Stop"
-      ),
-      f(
-        WpmDropdown,
-        { onChange: event => handleWpmChange({ event, dispatch }) },
-        null
       )
     )
   );
