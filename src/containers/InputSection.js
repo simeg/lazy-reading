@@ -1,20 +1,18 @@
 import { createElement as f } from "react";
 import { connect } from "react-redux";
+import Slider from "../components/Slider";
 import Textarea from "../components/Textarea";
-import { inputOnChange, setWordTickerRunning, wpmOnChange } from "../actions";
-import WpmDropdown from "../components/WpmDropdown";
 import WordCounter from "../components/WordCounter";
+import WpmDropdown from "../components/WpmDropdown";
+import { inputOnChange, setWordTickerRunning, wpmOnChange } from "../actions";
 
 const mapStateToProps = state => ({
   userInput: state.reducer.userInput,
-  autoFocus: state.reducer.inputPlaceholder,
-  placeholder: state.reducer.inputPlaceholder,
-  required: state.reducer.inputRequired
+  wpm: state.reducer.wpm
 });
 
 const handleSubmit = ({ event, dispatch }) => {
-  // Do not re-load page
-  event.preventDefault();
+  event.preventDefault(); // Do not re-load page
   dispatch(setWordTickerRunning(true));
 };
 
@@ -25,6 +23,9 @@ const handleWpmChange = ({ event, dispatch }) =>
   dispatch(wpmOnChange(event.target.value));
 
 const handleStop = ({ dispatch }) => dispatch(setWordTickerRunning(false));
+
+const sliderOnChange = ({ dispatch, event }) =>
+  dispatch(wpmOnChange(event.target.value));
 
 const InputSection = ({
   dispatch,
@@ -51,6 +52,15 @@ const InputSection = ({
         value: userInput
       }),
       f(
+        "div",
+        null,
+        f(
+          Slider,
+          { wpm, onChange: event => sliderOnChange({ event, dispatch }) },
+          null
+        )
+      ),
+      f(
         "button",
         {
           id: "btn-submit",
@@ -71,7 +81,7 @@ const InputSection = ({
       ),
       f(
         WpmDropdown,
-        { wpm, onChange: event => handleWpmChange({ event, dispatch }) },
+        { onChange: event => handleWpmChange({ event, dispatch }) },
         null
       )
     )

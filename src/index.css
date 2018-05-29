@@ -22,6 +22,7 @@ body {
 
 #inner textarea {
   background: none;
+  border-radius: 4px;
   border: 2px #FF3366 solid;
   color: #e5e5e5;
   font-size: 16px;
@@ -41,6 +42,7 @@ body {
   -moz-transition: all 0.3s;
   -webkit-transition: all 0.3s;
   background: none;
+  border-radius: 20px;
   border: 3px solid #FF3366;
   color: #FF3366;
   cursor: pointer;
@@ -72,7 +74,7 @@ body {
   -webkit-appearance: none;
   appearance: none;
   background: none;
-  border-radius: 0px;
+  border-radius: 3px;
   border: 3px solid #FF3366;
   color: #FF3366;
   font-family: inherit;
@@ -111,3 +113,108 @@ body {
 #word-container #post {
   text-align: left;
 }
+
+
+
+/*
+ * Slider
+ * Generated on: http://danielstern.ca/range.css/#/
+ */
+
+input[type=range].slider {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 5.2px 0;
+}
+input[type=range].slider:focus {
+  outline: none;
+}
+input[type=range].slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 25.6px;
+  cursor: pointer;
+  /*box-shadow: 1px 1px 1px #FC3868, 0 0 1px #FC3868;*/
+  background: #51424c;
+  /*background: #484d4d;*/
+  border-radius: 0;
+  /*border: 0 solid #010101;*/
+  border: 0 solid #FC3868;
+}
+input[type=range].slider::-webkit-slider-thumb {
+  box-shadow: 0 0 1px #670000, 0 0 0 #810000;
+  border: 0 solid #ff1e00;
+  height: 36px;
+  width: 30px;
+  border-radius: 3px;
+  background: #fc3868;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5.2px;
+}
+input[type=range].slider:focus::-webkit-slider-runnable-track {
+  background: #63515d;
+  /*background: #545a5a;*/
+}
+
+/*
+ TODO: When Lena approved design of slider
+ we can make it pretty for all browsers
+ */
+/*
+input[type=range].slider::-moz-range-track {
+  width: 100%;
+  height: 25.6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+  !*background: #484d4d;*!
+  background: #322A2F;
+  border-radius: 0;
+  border: 0 solid #010101;
+}
+input[type=range].slider::-moz-range-thumb {
+  box-shadow: 0 0 1px #670000, 0 0 0 #810000;
+  border: 0 solid #ff1e00;
+  height: 36px;
+  width: 30px;
+  border-radius: 3px;
+  background: #fc3868;
+  cursor: pointer;
+}
+input[type=range].slider::-ms-track {
+  width: 100%;
+  height: 25.6px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range].slider::-ms-fill-lower {
+  background: #3c4040;
+  border: 0 solid #010101;
+  border-radius: 0;
+  box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+}
+input[type=range].slider::-ms-fill-upper {
+  background: #484d4d;
+  border: 0 solid #010101;
+  border-radius: 0;
+  box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+}
+input[type=range].slider::-ms-thumb {
+  box-shadow: 0 0 1px #670000, 0 0 0 #810000;
+  border: 0 solid #ff1e00;
+  height: 36px;
+  width: 30px;
+  border-radius: 3px;
+  background: #fc3868;
+  cursor: pointer;
+  height: 25.6px;
+}
+input[type=range].slider:focus::-ms-fill-lower {
+  background: #484d4d;
+}
+input[type=range].slider:focus::-ms-fill-upper {
+  background: #545a5a;
+}
+*/
+
