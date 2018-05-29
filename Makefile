@@ -4,11 +4,12 @@ BINS=./node_modules/.bin
 
 REACT_SCRIPTS=$(BINS)/react-scripts
 PRETTIER=$(BINS)/prettier
+YARN=$(shell which yarn)
 
 build:
 	$(REACT_SCRIPTS) build
 
-deploy: lint test-ci build
+deploy: verify-deps lint test-ci build
 	git push heroku master
 
 fmt:
@@ -25,3 +26,6 @@ test-ci:
 
 test:
 	$(REACT_SCRIPTS) test
+
+verify-deps:
+	$(YARN) check --integrity
