@@ -24,7 +24,7 @@ const handleChange = ({ event, dispatch }) =>
 const handleWpmChange = ({ event, dispatch }) =>
   dispatch(wpmOnChange(event.target.value));
 
-const clearTextarea = ({ dispatch }) => dispatch(inputOnChange(""));
+const handleStop = ({ dispatch }) => dispatch(setWordTickerRunning(false));
 
 const InputSection = ({
   dispatch,
@@ -57,7 +57,7 @@ const InputSection = ({
           className: "btn",
           type: "submit"
         },
-        "Submit"
+        "Start"
       ),
       f(
         "button",
@@ -65,9 +65,9 @@ const InputSection = ({
           id: "btn-clear",
           className: "btn",
           type: "button",
-          onClick: () => clearTextarea({ dispatch })
+          onClick: () => handleStop({ dispatch })
         },
-        "Clear"
+        "Stop"
       ),
       f(
         WpmDropdown,
