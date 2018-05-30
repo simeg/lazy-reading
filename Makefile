@@ -18,7 +18,7 @@ fmt:
 	$(PRETTIER) "src/**/*.js" --write
 
 lint:
-	$(PRETTIER) "src/**/*.js"
+	$(PRETTIER) --list-different "src/**/*.js"
 
 serve:
 	$(REACT_SCRIPTS) start
