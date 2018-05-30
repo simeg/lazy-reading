@@ -1,34 +1,34 @@
 import { createElement as f } from "react";
 import { connect } from "react-redux";
 import WordTicker from "../components/WordTicker";
-import { setWordTickerRunning, readerIncWord } from "../actions";
+import { readerIncWord, readerStop } from "../actions";
 
 const mapStateToProps = state => ({
   input: state.reducer.userInput,
-  isRunning: state.reducer.isTickerRunning,
   wpm: state.reducer.wpm,
-  wordIndex: state.reducer.wordIndex
+  wordIndex: state.reducer.wordIndex,
+  readerState: state.reducer.readerState
 });
 
-const OutputSection = ({
-  dispatch,
-  input,
-  isRunning,
-  wpm,
-  readerState,
-  wordIndex
-}) => {
+const OutputSection = ({ dispatch, input, wpm, readerState, wordIndex }) => {
+  // TODO: Clean up state handling for WordTicker.
+  // Should this state really be handled outside the component?
+  if (readerState === "INACTIVE") return null;
   return f(
     "div",
     { id: "output" },
     f(WordTicker, {
       dispatch,
+
+      // Props
       input,
-      isRunning,
       wpm,
       wordIndex,
-      setWordTickerRunning,
-      readerIncWord
+      readerState,
+
+      // Actions
+      readerIncWord,
+      readerStop
     })
   );
 };

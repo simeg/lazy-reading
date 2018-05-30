@@ -5,23 +5,24 @@ import Textarea from "../components/Textarea";
 import WordCounter from "../components/WordCounter";
 import {
   inputOnChange,
-  setWordTickerRunning,
   wpmOnChange,
-  readerStop
+  readerStop,
+  readerStart,
+  readerPause
 } from "../actions";
 
 const mapStateToProps = state => ({
   userInput: state.reducer.userInput,
   wpm: state.reducer.wpm,
-  isTickerRunning: state.reducer.isTickerRunning
+  readerState: state.reducer.readerState
 });
 
-const handleStartPause = ({ event, dispatch, isTickerRunning }) => {
+const handleStartPause = ({ event, dispatch, readerState }) => {
   event.preventDefault(); // Do not re-load page
-  if (isTickerRunning) {
-    dispatch(setWordTickerRunning(false));
+  if (readerState === "ACTIVE") {
+    dispatch(readerPause);
   } else {
-    dispatch(setWordTickerRunning(true));
+    dispatch(readerStart);
   }
 };
 
@@ -33,7 +34,7 @@ const handleReset = ({ dispatch }) => dispatch(readerStop);
 const sliderOnChange = ({ dispatch, event }) =>
   dispatch(wpmOnChange(event.target.value));
 
-const InputSection = ({ dispatch, userInput, wpm, isTickerRunning }) => {
+const InputSection = ({ dispatch, userInput, wpm, readerState }) => {
   return f(
     "div",
     { id: "inner" },
@@ -41,8 +42,7 @@ const InputSection = ({ dispatch, userInput, wpm, isTickerRunning }) => {
     f(
       "form",
       {
-        onSubmit: event =>
-          handleStartPause({ event, dispatch, isTickerRunning })
+        onSubmit: event => handleStartPause({ event, dispatch, readerState })
       },
       f(Textarea, {
         onChange: event => handleChange({ event, dispatch }),
@@ -56,7 +56,7 @@ const InputSection = ({ dispatch, userInput, wpm, isTickerRunning }) => {
           {
             wpm,
             onChange: event => sliderOnChange({ event, dispatch }),
-            disabled: !!isTickerRunning
+            disabled: readerState === "ACTIVE"
           },
           null
         )
@@ -68,7 +68,7 @@ const InputSection = ({ dispatch, userInput, wpm, isTickerRunning }) => {
           className: "btn",
           type: "submit"
         },
-        isTickerRunning ? "Pause" : "Start"
+        readerState === "ACTIVE" ? "Pause" : "Start"
       ),
       f(
         "button",

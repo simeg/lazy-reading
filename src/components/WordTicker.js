@@ -1,5 +1,8 @@
 import { createElement as f, Component } from "react";
 
+// TODO: Clean up state handling in this component,
+// it's a bit messy right now but focus is speed
+
 // I'm forced to use a Class here to use `componentDidMount()`
 // which I need for dealing with `setInterval()`
 export default class WordTicker extends Component {
@@ -19,10 +22,10 @@ export default class WordTicker extends Component {
       const counter = this.props.wordIndex;
       if (counter >= wordList.length) {
         this.componentWillUnmount();
-        this.props.dispatch(this.props.setWordTickerRunning(false));
+        this.props.dispatch(this.props.readerStop);
       } else {
-        // Enable pausing output
-        if (!this.props.isRunning) {
+        // Enable pausing state
+        if (this.props.readerState !== "ACTIVE") {
           return;
         }
         this.setState({ word: wordList[counter] });
@@ -49,12 +52,8 @@ export default class WordTicker extends Component {
     }
   }
 
-  renderWord(word, wordIndex) {
-    // TODO: Have three explicit states for component:
-    // * ACTIVE
-    // * INACTIVE
-    // * PAUSED
-    if (!word || wordIndex === 0) return null;
+  renderWord(word, readerState) {
+    if (!word || readerState === "INACTIVE") return null;
     const index = this.getHighlightIndex(word);
 
     // TODO: This could be cleaned up
@@ -69,7 +68,7 @@ export default class WordTicker extends Component {
     return f(
       "div",
       { id: "letter-ticker" },
-      this.renderWord(this.state.word, this.props.wordIndex)
+      this.renderWord(this.state.word, this.props.readerState)
     );
   }
 }

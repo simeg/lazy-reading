@@ -30,18 +30,6 @@ describe("reducer", () => {
     ).toEqual({ userInput: "specific-input" });
   });
 
-  it("builds correct state for WORD_TICKER_RUNNING", () => {
-    expect(
-      reducer(
-        { userInput: "arbitrary-value" },
-        { type: "WORD_TICKER_RUNNING", isRunning: "specific-input" }
-      )
-    ).toEqual({
-      isTickerRunning: "specific-input",
-      userInput: "arbitrary-value"
-    });
-  });
-
   it("does not set WORD_TICKER_RUNNING to true when no value present", () => {
     expect(
       reducer(
