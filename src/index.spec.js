@@ -10,13 +10,6 @@ describe("actions", () => {
       input: "specific-input"
     });
   });
-
-  it("setWordTickerRunning should create WORD_TICKER_RUNNING action", () => {
-    expect(setWordTickerRunning("specific-input")).toEqual({
-      type: "WORD_TICKER_RUNNING",
-      isRunning: "specific-input"
-    });
-  });
 });
 
 describe("reducer", () => {
