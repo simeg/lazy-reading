@@ -50,6 +50,10 @@ export default class WordTicker extends Component {
   }
 
   renderWord(word, wordIndex) {
+    // TODO: Have three explicit states for component:
+    // * ACTIVE
+    // * INACTIVE
+    // * PAUSED
     if (!word || wordIndex === 0) return null;
     const index = this.getHighlightIndex(word);
 
