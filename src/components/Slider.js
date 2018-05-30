@@ -11,18 +11,19 @@ const wpmToSpeedString = wpm => {
   }
 };
 
-export default ({ onChange, wpm }) => {
+export default ({ onChange, wpm, disabled }) => {
   return f(
     Fragment,
     null,
     f("input", {
-      type: "range",
       className: "slider",
-      onChange,
       defaultValue: 300,
+      disabled,
       max: 500,
       min: 100,
-      step: 1
+      onChange,
+      step: 1,
+      type: "range"
     }),
     f(
       "div",

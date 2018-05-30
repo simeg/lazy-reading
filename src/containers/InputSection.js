@@ -53,7 +53,11 @@ const InputSection = ({ dispatch, userInput, wpm, isTickerRunning }) => {
         null,
         f(
           Slider,
-          { wpm, onChange: event => sliderOnChange({ event, dispatch }) },
+          {
+            wpm,
+            onChange: event => sliderOnChange({ event, dispatch }),
+            disabled: !!isTickerRunning
+          },
           null
         )
       ),
