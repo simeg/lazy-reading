@@ -3,34 +3,37 @@ import { connect } from "react-redux";
 import Slider from "../components/Slider";
 import Textarea from "../components/Textarea";
 import WordCounter from "../components/WordCounter";
-import { inputOnChange, setWordTickerRunning, wpmOnChange } from "../actions";
+import {
+  inputOnChange,
+  setWordTickerRunning,
+  wpmOnChange,
+  readerStop
+} from "../actions";
 
 const mapStateToProps = state => ({
   userInput: state.reducer.userInput,
-  wpm: state.reducer.wpm
+  wpm: state.reducer.wpm,
+  isTickerRunning: state.reducer.isTickerRunning
 });
 
-const handleSubmit = ({ event, dispatch }) => {
+const handleStartPause = ({ event, dispatch, isTickerRunning }) => {
   event.preventDefault(); // Do not re-load page
-  dispatch(setWordTickerRunning(true));
+  if (isTickerRunning) {
+    dispatch(setWordTickerRunning(false));
+  } else {
+    dispatch(setWordTickerRunning(true));
+  }
 };
 
 const handleChange = ({ event, dispatch }) =>
   dispatch(inputOnChange(event.target.value));
 
-const handleStop = ({ dispatch }) => dispatch(setWordTickerRunning(false));
+const handleReset = ({ dispatch }) => dispatch(readerStop);
 
 const sliderOnChange = ({ dispatch, event }) =>
   dispatch(wpmOnChange(event.target.value));
 
-const InputSection = ({
-  dispatch,
-  autoFocus,
-  placeholder,
-  required,
-  userInput,
-  wpm
-}) => {
+const InputSection = ({ dispatch, userInput, wpm, isTickerRunning }) => {
   return f(
     "div",
     { id: "inner" },
@@ -38,13 +41,11 @@ const InputSection = ({
     f(
       "form",
       {
-        onSubmit: event => handleSubmit({ event, dispatch })
+        onSubmit: event =>
+          handleStartPause({ event, dispatch, isTickerRunning })
       },
       f(Textarea, {
-        autoFocus,
         onChange: event => handleChange({ event, dispatch }),
-        placeholder,
-        required,
         value: userInput
       }),
       f(
@@ -63,7 +64,7 @@ const InputSection = ({
           className: "btn",
           type: "submit"
         },
-        "Start"
+        isTickerRunning ? "Pause" : "Start"
       ),
       f(
         "button",
@@ -71,9 +72,9 @@ const InputSection = ({
           id: "btn-clear",
           className: "btn",
           type: "button",
-          onClick: () => handleStop({ dispatch })
+          onClick: () => handleReset({ dispatch })
         },
-        "Stop"
+        "Reset"
       )
     )
   );

@@ -49,8 +49,8 @@ export default class WordTicker extends Component {
     }
   }
 
-  renderWord(word) {
-    if (!word) return null;
+  renderWord(word, wordIndex) {
+    if (!word || wordIndex === 0) return null;
     const index = this.getHighlightIndex(word);
 
     // TODO: This could be cleaned up
@@ -62,6 +62,10 @@ export default class WordTicker extends Component {
   }
 
   render() {
-    return f("div", { id: "letter-ticker" }, this.renderWord(this.state.word));
+    return f(
+      "div",
+      { id: "letter-ticker" },
+      this.renderWord(this.state.word, this.props.wordIndex)
+    );
   }
 }

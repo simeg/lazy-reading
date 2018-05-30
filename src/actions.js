@@ -18,5 +18,5 @@ export const readerIncWord = {
 };
 
 export const readerStop = {
-  type: "READER_INCREMENT_WORD"
+  type: "READER_STOP"
 };
