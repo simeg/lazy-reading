@@ -1,6 +1,6 @@
 .PHONY: build deploy fmt lint serve test-ci test
 
-BINS=./node_modules/.bin
+BINS=$(shell npm bin)
 
 REACT_SCRIPTS=$(BINS)/react-scripts
 PRETTIER=$(BINS)/prettier
