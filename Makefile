@@ -9,7 +9,9 @@ YARN=$(shell which yarn)
 build:
 	$(REACT_SCRIPTS) build
 
-deploy: verify-deps lint test-ci build
+ci: verify-deps lint test-ci build
+
+deploy: ci
 	git push heroku master
 
 fmt:
