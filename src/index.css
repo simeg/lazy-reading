@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: #FAFAFF;
 }
 
 body {
@@ -101,7 +102,14 @@ body {
   text-align: left;
 }
 
-
+#footer {
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 30px;
+  width: 100%;
+}
 
 /*
  * Slider
