@@ -12,3 +12,11 @@ export const wpmOnChange = wpm => ({
   type: "WPM_ON_CHANGE",
   wpm
 });
+
+export const readerIncWord = {
+  type: "READER_INCREMENT_WORD"
+};
+
+export const readerStop = {
+  type: "READER_INCREMENT_WORD"
+};

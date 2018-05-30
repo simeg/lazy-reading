@@ -5,7 +5,7 @@ import { createElement as f, Component } from "react";
 export default class WordTicker extends Component {
   constructor(props) {
     super(props);
-    this.state = { counter: 0 };
+    this.state = {};
   }
 
   calculateTimeout(wpm) {
@@ -16,12 +16,17 @@ export default class WordTicker extends Component {
     const wordList = this.props.input.split(" ");
 
     this.interval = setInterval(() => {
-      const counter = this.state.counter;
+      const counter = this.props.wordIndex;
       if (counter >= wordList.length) {
         this.componentWillUnmount();
         this.props.dispatch(this.props.setWordTickerRunning(false));
       } else {
-        this.setState({ word: wordList[counter], counter: counter + 1 });
+        // Enable pausing output
+        if (!this.props.isRunning) {
+          return;
+        }
+        this.setState({ word: wordList[counter] });
+        this.props.dispatch(this.props.readerIncWord);
       }
     }, this.calculateTimeout(this.props.wpm));
   }
