@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
 export const initialState = {
-  wpm: 100,
+  wpm: 300,
 
   // TEMPORARY
   userInput: "I these are words that I've written down as an example"
