@@ -95,7 +95,7 @@ body {
 #word-container #highlight {
   display: inline-block;
   position: static;
-  /*color: #FF3366;*/
+  color: #FF3366;
 }
 
 #word-container #post {
