@@ -1,4 +1,4 @@
-.PHONY: build deploy fmt lint serve test-ci test
+.PHONY: all build ci deploy fmt lint serve test-ci test verify-deps
 
 BINS=$(shell npm bin)
 

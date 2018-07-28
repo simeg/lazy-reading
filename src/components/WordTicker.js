@@ -16,7 +16,18 @@ export default class WordTicker extends Component {
   }
 
   componentDidMount() {
-    const wordList = this.props.input.split(" ");
+    const wordList = this.props.userInput.split(" ");
+
+    // Use setTimeout() in order to change 
+    const arr = [{ text: 'hello', time: 500}, { text: 'my', time: 800}, { text: 'super', time: 1000}, { text: 'world', time: 300}];
+
+    const delay = (list, index) => {
+      console.log(list[index].text);
+      if (list.length === index+1) return;
+      setTimeout(() => delay(list, index+1), list[index+1].time);
+    };
+
+    setTimeout(() => delay(arr, 0), 500);
 
     this.interval = setInterval(() => {
       const counter = this.props.wordIndex;
@@ -67,7 +78,10 @@ export default class WordTicker extends Component {
   render() {
     return f(
       "div",
-      { id: "letter-ticker" },
+      {
+        id: "letter-ticker",
+        className: (this.props.readerState === "ACTIVE") ? "" : "hide"
+      },
       this.renderWord(this.state.word, this.props.readerState)
     );
   }

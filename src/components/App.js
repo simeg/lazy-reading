@@ -10,7 +10,7 @@ const App = () =>
     "div",
     { id: "outer" },
     f(InputSection, null),
-    f(OutputSection, null),
+    // f(OutputSection, null),
     f(Footer, null)
   );
 
